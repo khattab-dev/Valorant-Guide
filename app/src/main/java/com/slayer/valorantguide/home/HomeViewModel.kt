@@ -8,19 +8,5 @@ class HomeViewModel : ViewModel() {
     val categories = listOf(
         CategoryModel(path = "agents", title = "AGENTS", drawableId = R.drawable.agents),
         CategoryModel(path = "buddies", title = "BUDDIES", drawableId = R.drawable.buddies),
-        CategoryModel(path = "agents", title = "AGENTS", drawableId = R.drawable.agents),
-        CategoryModel(path = "buddies", title = "BUDDIES", drawableId = R.drawable.buddies),
-        CategoryModel(path = "agents", title = "AGENTS", drawableId = R.drawable.agents),
-        CategoryModel(path = "buddies", title = "BUDDIES", drawableId = R.drawable.buddies),
-        CategoryModel(path = "agents", title = "AGENTS", drawableId = R.drawable.agents),
-        CategoryModel(path = "buddies", title = "BUDDIES", drawableId = R.drawable.buddies),
-        CategoryModel(path = "agents", title = "AGENTS", drawableId = R.drawable.agents),
-        CategoryModel(path = "buddies", title = "BUDDIES", drawableId = R.drawable.buddies),
-        CategoryModel(path = "agents", title = "AGENTS", drawableId = R.drawable.agents),
-        CategoryModel(path = "buddies", title = "BUDDIES", drawableId = R.drawable.buddies),
-        CategoryModel(path = "agents", title = "AGENTS", drawableId = R.drawable.agents),
-        CategoryModel(path = "buddies", title = "BUDDIES", drawableId = R.drawable.buddies),
-        CategoryModel(path = "agents", title = "AGENTS", drawableId = R.drawable.agents),
-        CategoryModel(path = "buddies", title = "BUDDIES", drawableId = R.drawable.buddies),
     )
 }
