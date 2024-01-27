@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -74,14 +73,13 @@ fun AgentCard(agent: AgentModel, onItemClicked: () -> Unit) {
                 text = agent.name,
                 style = TextStyle(
                     color = Color.White,
-                    fontSize = 28.sp,
+                    fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
             )
             AsyncImage(
                 model = agent.image,
                 contentDescription = null,
-                modifier = Modifier.size(72.dp)
             )
         }
     }

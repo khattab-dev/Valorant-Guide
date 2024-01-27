@@ -48,8 +48,6 @@ dependencies {
     implementation(libs.moshi.core)
     ksp(libs.moshi.kotlin.codegen)
 
-    implementation(libs.sandwich.core)
-
     implementation(project(":domain"))
-    implementation("javax.inject:javax.inject:1")
+    implementation(libs.javax.inject)
 }

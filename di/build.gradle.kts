@@ -55,6 +55,4 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.okhttp)
     ksp(libs.moshi.kotlin.codegen)
-
-    implementation(libs.sandwich.core)
 }
