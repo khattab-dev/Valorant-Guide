@@ -20,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
@@ -72,19 +73,18 @@ fun AgentCard(agent: AgentModel) {
                     .fillMaxWidth()
                     .background(
                         color = md_theme_dark_secondaryContainer.copy(alpha = .5f),
-                        shape = RoundedCornerShape(16.dp)
+                        shape = RoundedCornerShape(8.dp)
                     )
-                    .padding(8.dp),
+                    .padding(4.dp),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(
-                    text = agent.name,
-                )
+                Text(text = agent.name)
             }
 
             AsyncImage(
                 model = agent.image,
                 contentDescription = null,
+                contentScale = ContentScale.Crop
             )
         }
     }
