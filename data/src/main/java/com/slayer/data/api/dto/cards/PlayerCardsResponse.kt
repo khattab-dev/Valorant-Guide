@@ -15,7 +15,7 @@ data class PlayerCardsResponse(
             return this.data?.map {
                 CardModel(
                     uuid = it?.uuid ?: "",
-                    image = it?.displayIcon ?: ""
+                    image = it?.largeArt ?: ""
                 )
             } ?: emptyList()
         }

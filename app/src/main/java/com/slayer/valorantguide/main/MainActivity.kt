@@ -40,14 +40,9 @@ import com.slayer.valorantguide.ui.theme.ValorantGuideTheme
 import com.slayer.valorantguide.ui.theme.md_theme_dark_primary
 import com.slayer.valorantguide.ui.theme.md_theme_light_secondary
 import dagger.hilt.android.AndroidEntryPoint
-fun NavHostController.navigateToHome(id:Int,string: String) {
 
-    this.navigate("home/${id}")
-}
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,7 +60,9 @@ class MainActivity : ComponentActivity() {
 
                 when (destination.route) {
                     "home" -> vm.setTitle(null)
-                    else -> vm.setTitle(destination.route?.uppercase())
+                    "competitivetiers" -> vm.setTitle("RANKS")
+                    "playercards" -> vm.setTitle("PLAYER CARDS")
+                    else -> vm. setTitle(destination.route?.uppercase())
                 }
             }
 

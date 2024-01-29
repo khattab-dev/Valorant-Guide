@@ -59,7 +59,7 @@ private fun MapsCard(buddy: MapModel) {
         modifier = Modifier
             .fillMaxWidth()
             .height(200.dp),
-        border = BorderStroke(1.dp, md_theme_dark_secondaryContainer),
+        border = BorderStroke(2.dp, md_theme_dark_secondaryContainer),
         onClick = { }
     ) {
         Column(

@@ -15,9 +15,9 @@ data class SpraysResponse(
             return this.data?.map {
                 SprayModel(
                     uuid = it?.uuid ?: "",
-                    image = it?.displayIcon ?: ""
+                    image = it?.fullIcon ?: ""
                 )
-            } ?: emptyList()
+            }?.filter { it.image.isNotEmpty() } ?: emptyList()
         }
     }
 }
