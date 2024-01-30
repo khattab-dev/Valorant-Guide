@@ -1,6 +1,7 @@
 package com.slayer.data.api.dto.cards
 
 
+import com.slayer.data.local.entities.PlayerCardEntity
 import com.slayer.domain.models.cards.CardModel
 import com.squareup.moshi.Json
 
@@ -11,9 +12,9 @@ data class PlayerCardsResponse(
     val status: Int?
 ) {
     companion object {
-        fun PlayerCardsResponse.toPlayerCardModel(): List<CardModel> {
+        fun PlayerCardsResponse.toCardEntity(): List<PlayerCardEntity> {
             return this.data?.map {
-                CardModel(
+                PlayerCardEntity(
                     uuid = it?.uuid ?: "",
                     image = it?.largeArt ?: ""
                 )

@@ -24,7 +24,7 @@ import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
 fun PlayerCardScreen(
     vm: PlayerCardsViewModel = hiltViewModel<PlayerCardsViewModel>()
 ) {
-    vm.getPlayerCards()
+    vm.getPlayerCardsFromLocal()
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),

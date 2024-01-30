@@ -1,7 +1,7 @@
 package com.slayer.data.api.dto.agents
 
 
-import com.slayer.domain.models.agents.AgentModel
+import com.slayer.data.local.entities.AgentEntity
 import com.squareup.moshi.Json
 
 data class AgentsResponse(
@@ -11,11 +11,11 @@ data class AgentsResponse(
     val status: Int?
 ) {
     companion object {
-        fun AgentsResponse.toAgentsModel(): List<AgentModel> {
+        fun AgentsResponse.toAgentsEntity(): List<AgentEntity> {
             return this.data?.map {
-                AgentModel(uuid = it?.uuid ?: "",
+                AgentEntity(uuid = it?.uuid ?: "",
                     name = it?.displayName ?: "",
-                    image = it?.bustPortrait ?: ""
+                    agentImage = it?.bustPortrait ?: ""
                 )
             } ?: emptyList()
         }

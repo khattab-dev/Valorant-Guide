@@ -1,7 +1,7 @@
 package com.slayer.data.api.dto.ranks
 
 
-import com.slayer.domain.models.ranks.RankModel
+import com.slayer.data.local.entities.RankEntity
 import com.squareup.moshi.Json
 
 data class RanksResponse(
@@ -11,18 +11,15 @@ data class RanksResponse(
     val status: Int?
 ) {
     companion object {
-        fun RanksResponse.toRankModel(): Map<String,List<RankModel>> {
-            return this.data?.last()?.tiers?.groupBy {
-                it?.divisionName ?: ""
-            }?.mapValues { (_, tiers) ->
-                tiers.map { tier ->
-                    RankModel(
-                        id = tier?.tier ?: 0,
-                        divisionName = tier?.divisionName ?: "",
-                        divisionIcon = tier?.largeIcon ?: ""
-                    )
-                }
-            } ?: emptyMap()
+        fun RanksResponse.toRankEntity(): List<RankEntity> {
+            return this.data?.filterNotNull()?.last()?.tiers?.map { division ->
+                RankEntity(
+                    uuid = division?.tier  ?: 0,
+                    tier = division?.tierName  ?: "",
+                    divisionName = division?.divisionName  ?: "",
+                    divisionIcon = division?.largeIcon ?: ""
+                )
+            }?: emptyList()
         }
     }
 }

@@ -9,6 +9,7 @@ import com.slayer.domain.models.NetworkResult
 import com.slayer.domain.models.ranks.RankModel
 import com.slayer.domain.repositories.RanksRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,8 +20,8 @@ class RanksViewModel @Inject constructor(
     private val _ranksValue = mutableStateOf<Map<String,List<RankModel>>?>(null)
     val ranksValue: State<Map<String,List<RankModel>>?> = _ranksValue
 
-    fun getPlayerCards() = viewModelScope.launch {
-        when (val result = ranksRepository.getRanks()) {
+    private fun getRanksFromNetwork() = viewModelScope.launch(Dispatchers.IO) {
+        when (val result = ranksRepository.getRanksFromNetwork()) {
             is NetworkResult.Error -> {
                 result.errorMsg.printToLog()
             }
@@ -28,10 +29,14 @@ class RanksViewModel @Inject constructor(
                 result.e.stackTraceToString().printToLog()
             }
 
-            is NetworkResult.Success -> {
-                result.data.printToLog()
-                _ranksValue.value = result.data
-            }
+            is NetworkResult.Success -> {}
+        }
+    }
+
+    fun getPlayerCardsFromLocal() = viewModelScope.launch(Dispatchers.IO) {
+        ranksRepository.getRanksFromLocal().collect {
+            if (it.isNotEmpty()) { _ranksValue.value = it.groupBy { it.divisionName } }
+            else { getRanksFromNetwork() }
         }
     }
 }

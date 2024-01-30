@@ -9,6 +9,7 @@ import com.slayer.domain.models.NetworkResult
 import com.slayer.domain.models.cards.CardModel
 import com.slayer.domain.repositories.PlayerCardsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,8 +20,8 @@ class PlayerCardsViewModel @Inject constructor(
     private val _playerCards = mutableStateOf<List<CardModel>?>(null)
     val playerCards: State<List<CardModel>?> = _playerCards
 
-    fun getPlayerCards() = viewModelScope.launch {
-        when (val result = playerCardsRepository.getPlayerCards()) {
+    private fun getPlayerCardsFromNetwork() = viewModelScope.launch(Dispatchers.IO) {
+        when (val result = playerCardsRepository.getPlayerCardsFromNetwork()) {
             is NetworkResult.Error -> {
                 result.errorMsg.printToLog()
             }
@@ -28,10 +29,14 @@ class PlayerCardsViewModel @Inject constructor(
                 result.e.stackTraceToString().printToLog()
             }
 
-            is NetworkResult.Success -> {
-                result.data.printToLog()
-                _playerCards.value = result.data
-            }
+            is NetworkResult.Success -> {}
+        }
+    }
+
+    fun getPlayerCardsFromLocal() = viewModelScope.launch(Dispatchers.IO) {
+        playerCardsRepository.getPlayerCardsFromLocal().collect {
+            if (it.isNotEmpty()) { _playerCards.value = it }
+            else { getPlayerCardsFromNetwork() }
         }
     }
 }

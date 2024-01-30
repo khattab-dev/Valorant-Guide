@@ -23,7 +23,7 @@ import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
 fun SpraysScreen(
     vm: SpraysViewModel = hiltViewModel<SpraysViewModel>()
 ) {
-    vm.getSprays()
+    vm.getSpraysFromLocal()
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),

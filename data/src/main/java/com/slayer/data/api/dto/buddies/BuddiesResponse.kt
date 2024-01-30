@@ -1,6 +1,9 @@
 package com.slayer.data.api.dto.buddies
 
 
+import com.slayer.data.api.dto.agents.AgentsResponse
+import com.slayer.data.local.entities.AgentEntity
+import com.slayer.data.local.entities.GunsBuddyEntity
 import com.slayer.domain.models.buddies.BuddyModel
 import com.squareup.moshi.Json
 
@@ -11,12 +14,11 @@ data class BuddiesResponse(
     val status: Int?
 ) {
     companion object {
-        fun BuddiesResponse.toBuddyModel(): List<BuddyModel> {
+        fun BuddiesResponse.toBuddyEntity(): List<GunsBuddyEntity> {
             return this.data?.map {
-                BuddyModel(
-                    uuid = it?.uuid ?: "",
+                GunsBuddyEntity(uuid = it?.uuid ?: "",
                     name = it?.displayName ?: "",
-                    image = it?.displayIcon ?: ""
+                    buddyImage = it?.displayIcon ?: ""
                 )
             } ?: emptyList()
         }

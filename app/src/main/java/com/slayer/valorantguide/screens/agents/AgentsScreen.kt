@@ -31,7 +31,7 @@ import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
 fun AgentsScreen(
     vm: AgentsViewModel = hiltViewModel<AgentsViewModel>(),
 ) {
-    vm.getAgents()
+    vm.getAgentsFromLocal()
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),

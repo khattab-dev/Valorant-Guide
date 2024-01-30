@@ -9,6 +9,7 @@ import com.slayer.domain.models.NetworkResult
 import com.slayer.domain.models.sprays.SprayModel
 import com.slayer.domain.repositories.SpraysRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,8 +20,8 @@ class SpraysViewModel @Inject constructor(
     private val _spraysValue = mutableStateOf<List<SprayModel>?>(null)
     val spraysValue: State<List<SprayModel>?> = _spraysValue
 
-    fun getSprays() = viewModelScope.launch {
-        when (val result = spraysRepository.getSprays()) {
+    private fun getSpraysFromNetwork() = viewModelScope.launch(Dispatchers.IO) {
+        when (val result = spraysRepository.getSpraysFromNetwork()) {
             is NetworkResult.Error -> {
                 result.errorMsg.printToLog()
             }
@@ -28,10 +29,14 @@ class SpraysViewModel @Inject constructor(
                 result.e.stackTraceToString().printToLog()
             }
 
-            is NetworkResult.Success -> {
-                result.data.printToLog()
-                _spraysValue.value = result.data
-            }
+            is NetworkResult.Success -> {}
+        }
+    }
+
+    fun getSpraysFromLocal() = viewModelScope.launch(Dispatchers.IO) {
+        spraysRepository.getSpraysFromLocal().collect {
+            if (it.isNotEmpty()) { _spraysValue.value = it }
+            else { getSpraysFromNetwork() }
         }
     }
 }

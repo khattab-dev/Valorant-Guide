@@ -28,12 +28,12 @@ import coil.compose.AsyncImage
 import com.slayer.domain.models.buddies.BuddyModel
 import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BuddiesScreen(
     vm: BuddiesViewModel = hiltViewModel<BuddiesViewModel>()
 ) {
-    vm.getBuddies()
+    vm.getBuddiesFromLocal()
+
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         verticalArrangement = Arrangement.spacedBy(8.dp),

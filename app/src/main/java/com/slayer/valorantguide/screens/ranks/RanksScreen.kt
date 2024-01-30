@@ -25,7 +25,7 @@ import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
 fun RanksScreen(
     vm: RanksViewModel = hiltViewModel<RanksViewModel>()
 ) {
-    vm.getPlayerCards()
+    vm.getPlayerCardsFromLocal()
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(32.dp),

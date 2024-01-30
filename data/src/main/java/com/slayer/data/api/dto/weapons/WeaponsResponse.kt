@@ -1,6 +1,7 @@
 package com.slayer.data.api.dto.weapons
 
 
+import com.slayer.data.local.entities.WeaponEntity
 import com.slayer.domain.models.weapons.WeaponModel
 import com.squareup.moshi.Json
 
@@ -11,9 +12,9 @@ data class WeaponsResponse(
     val status: Int?
 ) {
     companion object {
-        fun WeaponsResponse.toWeaponModel(): List<WeaponModel> {
+        fun WeaponsResponse.toWeaponEntity(): List<WeaponEntity> {
             return this.data?.map {
-                WeaponModel(
+                WeaponEntity(
                     uuid = it?.uuid ?: "",
                     name = it?.displayName ?: "",
                     image = it?.displayIcon ?: ""

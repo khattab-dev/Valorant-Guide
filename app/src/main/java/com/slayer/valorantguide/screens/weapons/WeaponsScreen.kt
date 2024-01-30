@@ -32,7 +32,7 @@ import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
 fun WeaponsScreen(
     vm: WeaponsViewModel = hiltViewModel<WeaponsViewModel>()
 ) {
-    vm.getWeapons()
+    vm.getPlayerCardsFromLocal()
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),

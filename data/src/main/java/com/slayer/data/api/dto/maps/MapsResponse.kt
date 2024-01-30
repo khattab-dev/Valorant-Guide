@@ -1,7 +1,7 @@
 package com.slayer.data.api.dto.maps
 
 
-import com.slayer.domain.models.maps.MapModel
+import com.slayer.data.local.entities.MapEntity
 import com.squareup.moshi.Json
 
 data class MapsResponse(
@@ -11,9 +11,9 @@ data class MapsResponse(
     val status: Int?
 ) {
     companion object {
-        fun MapsResponse.toMapModel(): List<MapModel> {
+        fun MapsResponse.toMapEntity(): List<MapEntity> {
             return this.data?.map {
-                MapModel(
+                MapEntity(
                     uuid = it?.uuid ?: "",
                     name = it?.displayName ?: "",
                     image = it?.displayIcon ?: ""

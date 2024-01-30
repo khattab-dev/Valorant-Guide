@@ -1,6 +1,7 @@
 package com.slayer.data.api.dto.sprays
 
 
+import com.slayer.data.local.entities.SprayEntity
 import com.slayer.domain.models.sprays.SprayModel
 import com.squareup.moshi.Json
 
@@ -11,9 +12,9 @@ data class SpraysResponse(
     val status: Int?
 ) {
     companion object {
-        fun SpraysResponse.toSpraysModel(): List<SprayModel> {
+        fun SpraysResponse.toSpraysEntity(): List<SprayEntity> {
             return this.data?.map {
-                SprayModel(
+                SprayEntity(
                     uuid = it?.uuid ?: "",
                     image = it?.fullIcon ?: ""
                 )

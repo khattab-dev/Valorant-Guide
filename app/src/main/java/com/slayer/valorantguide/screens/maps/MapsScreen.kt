@@ -32,7 +32,7 @@ import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
 fun MapsScreen(
     vm: MapsViewModel = hiltViewModel<MapsViewModel>()
 ) {
-    vm.getMaps()
+    vm.getMapsFromLocal()
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),

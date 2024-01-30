@@ -7,7 +7,7 @@ import retrofit2.Response
 interface ApiHandler {
     suspend fun <T : Any, R : Any> handleApi(
         execute: suspend () -> Response<T>,
-        mapper: (T) -> R
+        mapper: (T) -> R,
     ): NetworkResult<R> {
         return try {
             val response = execute()
