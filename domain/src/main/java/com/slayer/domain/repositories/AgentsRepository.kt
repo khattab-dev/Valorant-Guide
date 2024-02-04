@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.Flow
 interface AgentsRepository {
     suspend fun getAgentsFromApi(): NetworkResult<Any>
     suspend fun getAgentsFromLocal(): Flow<List<AgentModel>>
+
+    suspend fun getAgentFromLocal(id : String) : Flow<AgentModel>
 }

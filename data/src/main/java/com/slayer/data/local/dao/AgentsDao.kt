@@ -14,6 +14,9 @@ interface AgentsDao {
     @Query("SELECT * FROM agents_table")
     fun getAgents() : Flow<List<AgentEntity>>
 
+    @Query("SELECT * FROM agents_table WHERE uuid = :id")
+    fun getAgentById(id : String) : Flow<AgentEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAgent(agentEntity: AgentEntity)
 

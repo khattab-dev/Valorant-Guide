@@ -24,11 +24,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.slayer.common.printToLog
 import com.slayer.valorantguide.R
-import com.slayer.valorantguide.screens.agents.AgentsScreen
+import com.slayer.valorantguide.screens.agents.agent_details.AgentDetailsScreen
+import com.slayer.valorantguide.screens.agents.agents_list.AgentsScreen
 import com.slayer.valorantguide.screens.buddies.BuddiesScreen
 import com.slayer.valorantguide.screens.home.HomeScreen
 import com.slayer.valorantguide.screens.maps.MapsScreen
@@ -59,11 +63,15 @@ class MainActivity : ComponentActivity() {
                 canPop = controller.previousBackStackEntry != null
 
                 when (destination.route) {
-                    "home" -> vm.setTitle(null)
-                    "competitivetiers" -> vm.setTitle("RANKS")
-                    "playercards" -> vm.setTitle("PLAYER CARDS")
-                    else -> vm. setTitle(destination.route?.uppercase())
+                    "home" -> {
+                        vm.setTitle(null)
+                    }
+
+                    "cards" -> vm.setTitle("PLAYER CARDS")
+                    "agentDetails/{agent_id}" -> vm.setTitle("Agent Details")
+                    else -> vm.setTitle(destination.route?.uppercase())
                 }
+                destination.route.printToLog()
             }
 
             ValorantGuideTheme(useDarkTheme = true) {
@@ -112,11 +120,17 @@ private fun ScreensAroundApp(
         modifier = Modifier.padding(paddingValues)
     ) {
         composable(route = "home") {
-            HomeScreen(navController)
+            HomeScreen(navHostController = navController)
         }
 
         composable(route = "agents") {
-            AgentsScreen()
+            AgentsScreen(navHostController = navController)
+        }
+
+        composable(route = "agentDetails/{agent_id}", arguments = listOf(
+            navArgument("agent_id") { type = NavType.StringType }
+        )) {
+            AgentDetailsScreen()
         }
 
         composable(route = "buddies") {
@@ -131,7 +145,7 @@ private fun ScreensAroundApp(
             SpraysScreen()
         }
 
-        composable(route = "competitivetiers") {
+        composable(route = "ranks") {
             RanksScreen()
         }
 

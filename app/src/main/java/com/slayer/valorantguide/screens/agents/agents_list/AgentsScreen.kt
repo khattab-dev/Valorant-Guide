@@ -1,4 +1,4 @@
-package com.slayer.valorantguide.screens.agents
+package com.slayer.valorantguide.screens.agents.agents_list
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.slayer.domain.models.agents.AgentModel
 import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
@@ -30,6 +31,7 @@ import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
 @Composable
 fun AgentsScreen(
     vm: AgentsViewModel = hiltViewModel<AgentsViewModel>(),
+    navHostController: NavHostController
 ) {
     vm.getAgentsFromLocal()
 
@@ -45,7 +47,7 @@ fun AgentsScreen(
     ) {
         vm.agentsResult.value?.let { agents ->
             items(agents, key = { it.uuid }, contentType = { AgentModel::class }) { agent ->
-                AgentCard(agent)
+                AgentCard(agent,navHostController)
             }
         }
     }
@@ -53,13 +55,15 @@ fun AgentsScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AgentCard(agent: AgentModel) {
+fun AgentCard(agent: AgentModel,navHostController: NavHostController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(200.dp),
         border = BorderStroke(2.dp, md_theme_dark_secondaryContainer),
-        onClick = {  }
+        onClick = {
+            navHostController.navigate("agentDetails/${agent.uuid}")
+        }
     ) {
         Column(
             verticalArrangement = Arrangement.SpaceBetween,

@@ -4,6 +4,7 @@ import com.slayer.data.api.ApiHandler
 import com.slayer.data.api.ApiService
 import com.slayer.data.api.dto.agents.AgentsResponse.Companion.toAgentsEntity
 import com.slayer.data.local.dao.AgentsDao
+import com.slayer.data.local.entities.AgentEntity.Companion.toAgentModel
 import com.slayer.data.local.entities.AgentEntity.Companion.toAgentsModel
 import com.slayer.domain.models.NetworkResult
 import com.slayer.domain.models.agents.AgentModel
@@ -27,5 +28,9 @@ class AgentsRepoImpl @Inject constructor(
 
     override suspend fun getAgentsFromLocal(): Flow<List<AgentModel>> {
         return agentsDao.getAgents().map { it.toAgentsModel() }
+    }
+
+    override suspend fun getAgentFromLocal(id : String): Flow<AgentModel> {
+        return agentsDao.getAgentById(id).map { it.toAgentModel() }
     }
 }

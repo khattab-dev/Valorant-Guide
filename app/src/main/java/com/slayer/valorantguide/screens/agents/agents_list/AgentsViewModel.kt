@@ -1,9 +1,10 @@
-package com.slayer.valorantguide.screens.agents
+package com.slayer.valorantguide.screens.agents.agents_list
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.slayer.common.printToLog
 import com.slayer.domain.models.NetworkResult
 import com.slayer.domain.models.agents.AgentModel
 import com.slayer.domain.repositories.AgentsRepository
@@ -20,9 +21,13 @@ class AgentsViewModel @Inject constructor(
     val agentsResult: State<List<AgentModel>?> = _agentsResult
 
     private fun getAgentsFromApi() = viewModelScope.launch(Dispatchers.IO) {
-        when (agentsRepository.getAgentsFromApi()) {
-            is NetworkResult.Error -> {}
-            is NetworkResult.Exception -> {}
+        when (val result = agentsRepository.getAgentsFromApi()) {
+            is NetworkResult.Error -> {
+                result.errorMsg.printToLog()
+            }
+            is NetworkResult.Exception -> {
+                result.e.stackTraceToString().printToLog()
+            }
             is NetworkResult.Success -> {}
         }
     }

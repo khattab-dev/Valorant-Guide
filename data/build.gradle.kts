@@ -36,6 +36,7 @@ android {
 
 dependencies {
     implementation(project(":common"))
+    implementation(project(":domain"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
@@ -48,10 +49,13 @@ dependencies {
     implementation(libs.moshi.core)
     ksp(libs.moshi.kotlin.codegen)
 
-    implementation(project(":domain"))
+
     implementation(libs.javax.inject)
 
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
+
+    implementation(libs.gson)
+
 }
