@@ -14,6 +14,9 @@ interface WeaponsDao {
     @Query("SELECT * FROM weapon_table")
     fun getWeapons() : Flow<List<WeaponEntity>>
 
+    @Query("SELECT * FROM weapon_table WHERE uuid = :id")
+    fun getWeaponById(id : String) : Flow<WeaponEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertWeapon(weaponEntity: WeaponEntity)
 

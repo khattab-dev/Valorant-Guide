@@ -2,7 +2,6 @@ package com.slayer.data.api.dto.weapons
 
 
 import com.slayer.data.local.entities.WeaponEntity
-import com.slayer.domain.models.weapons.WeaponModel
 import com.squareup.moshi.Json
 
 data class WeaponsResponse(
@@ -17,7 +16,20 @@ data class WeaponsResponse(
                 WeaponEntity(
                     uuid = it?.uuid ?: "",
                     name = it?.displayName ?: "",
-                    image = it?.displayIcon ?: ""
+                    image = it?.displayIcon ?: "",
+                    weaponStats = mapOf(
+                        "Name" to (it?.displayName ?: ""),
+                        "Type" to (it?.category?.split("::")?.last() ?: ""),
+                        "Wall penetration" to (it?.weaponStats?.wallPenetration?.split("::")?.last() ?: ""),
+                        "Fire rate" to (it?.weaponStats?.fireRate?.toString() ?: ""),
+                        "Magazine size" to (it?.weaponStats?.magazineSize?.toString() ?: ""),
+                        "Reload time (S)" to (it?.weaponStats?.reloadTimeSeconds?.toString() ?: ""),
+                    ),
+                    adsStats = mapOf(
+                        "Fire rate" to (it?.weaponStats?.adsStats?.fireRate?.toString() ?: ""),
+                        "Zoom" to (it?.weaponStats?.adsStats?.zoomMultiplier?.toString() ?: ""),
+                    ),
+                    damageRanges = emptyList(),
                 )
             } ?: emptyList()
         }

@@ -40,6 +40,7 @@ import com.slayer.valorantguide.screens.player_cards.PlayerCardScreen
 import com.slayer.valorantguide.screens.ranks.RanksScreen
 import com.slayer.valorantguide.screens.sprays.SpraysScreen
 import com.slayer.valorantguide.screens.weapons.WeaponsScreen
+import com.slayer.valorantguide.screens.weapons.details.WeaponDetailsScreen
 import com.slayer.valorantguide.ui.theme.ValorantGuideTheme
 import com.slayer.valorantguide.ui.theme.md_theme_dark_primary
 import com.slayer.valorantguide.ui.theme.md_theme_light_secondary
@@ -69,6 +70,7 @@ class MainActivity : ComponentActivity() {
 
                     "cards" -> vm.setTitle("PLAYER CARDS")
                     "agentDetails/{agent_id}" -> vm.setTitle("Agent Details")
+                    "weaponDetails/{weapon_id}" -> vm.setTitle("Weapon Details")
                     else -> vm.setTitle(destination.route?.uppercase())
                 }
                 destination.route.printToLog()
@@ -138,7 +140,13 @@ private fun ScreensAroundApp(
         }
 
         composable(route = "weapons") {
-            WeaponsScreen()
+            WeaponsScreen(navHostController = navController)
+        }
+
+        composable(route = "weaponDetails/{weapon_id}", arguments = listOf(
+            navArgument("weapon_id") { type = NavType.StringType }
+        )) {
+            WeaponDetailsScreen()
         }
 
         composable(route = "sprays") {
@@ -153,7 +161,7 @@ private fun ScreensAroundApp(
             MapsScreen()
         }
 
-        composable(route = "playercards") {
+        composable(route = "cards") {
             PlayerCardScreen()
         }
 

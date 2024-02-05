@@ -24,15 +24,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.slayer.domain.models.weapons.WeaponModel
 import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
 
 @Composable
 fun WeaponsScreen(
-    vm: WeaponsViewModel = hiltViewModel<WeaponsViewModel>()
+    vm: WeaponsViewModel = hiltViewModel<WeaponsViewModel>(),
+    navHostController: NavHostController
 ) {
-    vm.getPlayerCardsFromLocal()
+    vm.getWeaponFromLocal()
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -46,7 +48,7 @@ fun WeaponsScreen(
     ) {
         vm.weaponsResult.value?.let { weapons ->
             items(weapons, key = { it.uuid }, contentType = { WeaponModel::class }) { buddy ->
-                WeaponCard(buddy)
+                WeaponCard(buddy,navHostController)
             }
         }
     }
@@ -54,13 +56,13 @@ fun WeaponsScreen(
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun WeaponCard(weapon: WeaponModel) {
+private fun WeaponCard(weapon: WeaponModel,navHostController : NavHostController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(200.dp),
         border = BorderStroke(2.dp, md_theme_dark_secondaryContainer),
-        onClick = { }
+        onClick = { navHostController.navigate("weaponDetails/${weapon.uuid}") }
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

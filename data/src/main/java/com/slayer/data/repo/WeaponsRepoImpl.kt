@@ -25,6 +25,9 @@ class WeaponsRepoImpl @Inject constructor(
 
     override suspend fun getWeaponsFromLocal(): Flow<List<WeaponModel>> {
         return dao.getWeapons().map { it.toWeaponModel() }
+    }
 
+    override suspend fun getWeaponFromLocal(id : String): Flow<WeaponModel> {
+        return dao.getWeaponById(id).map { it.toWeaponModel() }
     }
 }

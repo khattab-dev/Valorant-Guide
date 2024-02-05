@@ -37,9 +37,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.slayer.domain.models.home_category.CategoryModel
@@ -48,8 +48,10 @@ import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen(navHostController: NavHostController) {
-    val vm: HomeViewModel = viewModel()
+fun HomeScreen(
+    vm: HomeViewModel = hiltViewModel<HomeViewModel>(),
+    navHostController: NavHostController
+) {
 
     LazyColumn(
         modifier = Modifier

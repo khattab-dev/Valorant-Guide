@@ -27,7 +27,7 @@ class WeaponsViewModel @Inject constructor(
         }
     }
 
-    fun getPlayerCardsFromLocal() = viewModelScope.launch(Dispatchers.IO) {
+    fun getWeaponFromLocal() = viewModelScope.launch(Dispatchers.IO) {
         weaponsRepository.getWeaponsFromLocal().collect {
             if (it.isNotEmpty()) { _weaponsResult.value = it }
             else { getWeaponsFromNetwork() }
