@@ -29,11 +29,6 @@ Valorant Guide is an Android application designed to provide comprehensive infor
 - Utilizes a single activity architecture for improved performance.
 - Implements ViewModel to manage UI-related data in a lifecycle-conscious manner.
 
-## Installation
-1. Clone the repository: `git clone https://github.com/your-username/valorant-guide.git`
-2. Open the project in Android Studio.
-3. Build and run the app on an emulator or physical device.
-
 ## Acknowledgements
 - [Jetpack Compose](https://developer.android.com/jetpack/compose) for building the user interface.
 - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) for dependency injection.
