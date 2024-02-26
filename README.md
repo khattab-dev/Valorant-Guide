@@ -1,12 +1,12 @@
 # Valorant Guide
 
-![image]()
 ## Screenshots
-![Screenshot 1](https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267)
-![Screenshot 2](https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267)
-![Screenshot 3](https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267)
-![Screenshot 4](https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267)
-![Screenshot 5](https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267)
+<div style="display:flex;">
+    <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267" alt="Screenshot 1" width="200"/>
+    <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267" alt="Screenshot 2" width="200"/>
+    <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267" alt="Screenshot 3" width="200"/>
+    <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267" alt="Screenshot 4" width="200"/>
+</div>
 
 ## Overview
 Valorant Guide is an Android application designed to provide comprehensive information about various aspects of the popular game Valorant. It serves as a reference tool for players who want to learn more about weapons, characters, and other game-related data.
