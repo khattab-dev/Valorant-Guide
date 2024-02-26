@@ -1,7 +1,7 @@
 # Valorant Guide
 
 ## Screenshots
-<div style="display:flex;">
+<div align="center">
     <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267" alt="Screenshot 1" width="200"/>
     <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267" alt="Screenshot 2" width="200"/>
     <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267" alt="Screenshot 3" width="200"/>
