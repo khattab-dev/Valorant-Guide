@@ -4,7 +4,7 @@
 <div align="center">
     <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267" alt="Screenshot 1" width="200"/>
     <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/5293721f-3d93-4eae-893f-92459aec030a" alt="Screenshot 2" width="200"/>
-    <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267" alt="Screenshot 3" width="200"/>
+    <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/744f11ac-d60d-406b-bfce-a7df1f8c2d80" alt="Screenshot 3" width="200"/>
     <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267" alt="Screenshot 4" width="200"/>
 </div>
 
