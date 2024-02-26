@@ -17,6 +17,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -30,9 +32,14 @@ import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
 
 @Composable
 fun MapsScreen(
-    vm: MapsViewModel = hiltViewModel<MapsViewModel>()
+    vm: MapsViewModel = hiltViewModel<MapsViewModel>(),
+    appBarTitle: MutableState<String>
 ) {
-    vm.getMapsFromLocal()
+    LaunchedEffect(Unit) {
+        appBarTitle.value = "Maps"
+
+        vm.getMapsFromLocal()
+    }
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),

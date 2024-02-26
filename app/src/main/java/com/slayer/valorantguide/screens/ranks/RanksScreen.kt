@@ -13,6 +13,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
@@ -23,9 +25,14 @@ import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
 
 @Composable
 fun RanksScreen(
-    vm: RanksViewModel = hiltViewModel<RanksViewModel>()
+    vm: RanksViewModel = hiltViewModel<RanksViewModel>(),
+    appBarTitle: MutableState<String>
 ) {
-    vm.getPlayerCardsFromLocal()
+    LaunchedEffect(Unit) {
+        appBarTitle.value = "Ranks"
+
+        vm.getPlayerCardsFromLocal()
+    }
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(32.dp),

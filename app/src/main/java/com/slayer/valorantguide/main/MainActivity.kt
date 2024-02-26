@@ -13,6 +13,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,14 +23,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.slayer.common.printToLog
 import com.slayer.valorantguide.R
 import com.slayer.valorantguide.screens.agents.agent_details.AgentDetailsScreen
 import com.slayer.valorantguide.screens.agents.agents_list.AgentsScreen
@@ -56,24 +55,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             window.statusBarColor = md_theme_dark_primary.toArgb()
 
-            val vm: MainViewModel = viewModel()
             val navController = rememberNavController()
             var canPop by remember { mutableStateOf(false) }
+            val appBarTitle = remember { mutableStateOf("Main Screen") }
 
             navController.addOnDestinationChangedListener { controller, destination, bundle ->
                 canPop = controller.previousBackStackEntry != null
-
-                when (destination.route) {
-                    "home" -> {
-                        vm.setTitle(null)
-                    }
-
-                    "cards" -> vm.setTitle("PLAYER CARDS")
-                    "agentDetails/{agent_id}" -> vm.setTitle("Agent Details")
-                    "weaponDetails/{weapon_id}" -> vm.setTitle("Weapon Details")
-                    else -> vm.setTitle(destination.route?.uppercase())
-                }
-                destination.route.printToLog()
             }
 
             ValorantGuideTheme(useDarkTheme = true) {
@@ -81,11 +68,9 @@ class MainActivity : ComponentActivity() {
                     containerColor = md_theme_dark_primary,
                     topBar = {
                         CenterAlignedTopAppBar(
-                            colors = topAppBarColors(
-                                containerColor = Color.Transparent,
-                            ),
+                            colors = topAppBarColors(containerColor = Color.Transparent),
                             title = {
-                                Text(vm.appBarTitle.value, fontWeight = FontWeight.Bold)
+                                Text(appBarTitle.value, fontWeight = FontWeight.Bold)
                             },
                             navigationIcon = {
                                 if (canPop) {
@@ -96,14 +81,12 @@ class MainActivity : ComponentActivity() {
                                             tint = md_theme_light_secondary
                                         )
                                     }
-                                } else {
-                                    null
                                 }
                             }
                         )
                     }
                 ) {
-                    ScreensAroundApp(it, vm, navController)
+                    ScreensAroundApp(it, appBarTitle, navController)
                 }
             }
         }
@@ -113,7 +96,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun ScreensAroundApp(
     paddingValues: PaddingValues,
-    vm: MainViewModel,
+    appBarTitle : MutableState<String>,
     navController: NavHostController
 ) {
     NavHost(
@@ -122,51 +105,51 @@ private fun ScreensAroundApp(
         modifier = Modifier.padding(paddingValues)
     ) {
         composable(route = "home") {
-            HomeScreen(navHostController = navController)
+            HomeScreen(navHostController = navController, appBarTitle = appBarTitle)
         }
 
         composable(route = "agents") {
-            AgentsScreen(navHostController = navController)
+            AgentsScreen(navHostController = navController, appBarTitle = appBarTitle)
         }
 
         composable(route = "agentDetails/{agent_id}", arguments = listOf(
             navArgument("agent_id") { type = NavType.StringType }
         )) {
-            AgentDetailsScreen()
+            AgentDetailsScreen(appBarTitle = appBarTitle)
         }
 
         composable(route = "buddies") {
-            BuddiesScreen()
+            BuddiesScreen(appBarTitle = appBarTitle)
         }
 
         composable(route = "weapons") {
-            WeaponsScreen(navHostController = navController)
+            WeaponsScreen(navHostController = navController,appBarTitle = appBarTitle)
         }
 
         composable(route = "weaponDetails/{weapon_id}", arguments = listOf(
             navArgument("weapon_id") { type = NavType.StringType }
         )) {
-            WeaponDetailsScreen()
+            WeaponDetailsScreen(appBarTitle = appBarTitle)
         }
 
         composable(route = "sprays") {
-            SpraysScreen()
+            SpraysScreen(appBarTitle = appBarTitle)
         }
 
         composable(route = "ranks") {
-            RanksScreen()
+            RanksScreen(appBarTitle = appBarTitle)
         }
 
         composable(route = "maps") {
-            MapsScreen()
+            MapsScreen(appBarTitle = appBarTitle)
         }
 
         composable(route = "cards") {
-            PlayerCardScreen()
+            PlayerCardScreen(appBarTitle = appBarTitle)
         }
 
         composable(route = "buddies") {
-            BuddiesScreen()
+            BuddiesScreen(appBarTitle = appBarTitle)
         }
     }
 }

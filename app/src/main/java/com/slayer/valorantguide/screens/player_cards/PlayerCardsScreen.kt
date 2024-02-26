@@ -10,6 +10,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
@@ -21,9 +23,14 @@ import com.slayer.valorantguide.ui.theme.md_theme_dark_secondaryContainer
 
 @Composable
 fun PlayerCardScreen(
-    vm: PlayerCardsViewModel = hiltViewModel<PlayerCardsViewModel>()
+    vm: PlayerCardsViewModel = hiltViewModel<PlayerCardsViewModel>(),
+    appBarTitle: MutableState<String>
 ) {
-    vm.getPlayerCardsFromLocal()
+    LaunchedEffect(Unit) {
+        appBarTitle.value = "Cards"
+
+        vm.getPlayerCardsFromLocal()
+    }
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
