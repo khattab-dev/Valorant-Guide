@@ -1,5 +1,8 @@
 # Valorant Guide
 
+## Overview
+Valorant Guide is an Android application designed to provide comprehensive information about various aspects of the popular game Valorant. It serves as a reference tool for players who want to learn more about weapons, characters, and other game-related data.
+
 ## Screenshots
 <div align="center">
     <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/432c5a76-3b46-4b46-b790-d14250982267" alt="Screenshot 1" width="200"/>
@@ -7,9 +10,6 @@
     <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/744f11ac-d60d-406b-bfce-a7df1f8c2d80" alt="Screenshot 3" width="200"/>
     <img src="https://github.com/AhmedKhattab01/valorant-guide/assets/92499066/2a39041c-8af4-4e55-81b3-b2ff88c2ca25" alt="Screenshot 4" width="200"/>
 </div>
-
-## Overview
-Valorant Guide is an Android application designed to provide comprehensive information about various aspects of the popular game Valorant. It serves as a reference tool for players who want to learn more about weapons, characters, and other game-related data.
 
 ## Technologies Used
 - **Language:** Kotlin
