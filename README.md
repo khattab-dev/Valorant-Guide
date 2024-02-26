@@ -7,7 +7,6 @@ Valorant Guide is an Android application designed to provide comprehensive infor
 - **Language:** Kotlin
 - **UI Toolkit:** Jetpack Compose
 - **Architecture:** MVVM (Model-View-ViewModel)
-- **Design Pattern:** Repository Pattern
 - **Dependency Injection:** Hilt
 - **Database:** Room
 - **Networking:** Retrofit
