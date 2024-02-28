@@ -22,7 +22,7 @@ logging-interceptor = "4.12.0"
 
 hilt = "2.49"
 room-runtime = "2.6.1"
-ui-text-google-fonts = "1.6.0"
+ui-text-google-fonts = "1.6.2"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }

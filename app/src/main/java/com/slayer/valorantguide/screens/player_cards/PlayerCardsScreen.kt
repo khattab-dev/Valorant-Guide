@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
@@ -26,7 +27,7 @@ fun PlayerCardScreen(
     vm: PlayerCardsViewModel = hiltViewModel<PlayerCardsViewModel>(),
     appBarTitle: MutableState<String>
 ) {
-    LaunchedEffect(Unit) {
+    SideEffect {
         appBarTitle.value = "Cards"
 
         vm.getPlayerCardsFromLocal()
